@@ -31,6 +31,8 @@ MOC_DIR         = $$PWD/../build/app
 OBJECTS_DIR     = $$PWD/../build/app
 
 
+include($$PWD/FileSystem/FileSystem.pri)
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
