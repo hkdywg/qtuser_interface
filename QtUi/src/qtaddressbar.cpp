@@ -1,14 +1,4 @@
-﻿/******************************************************************
- Copyright (C) 2017 - All Rights Reserved by
- 文 件 名 : qtaddressbar.cpp --- QtAddressBar
- 作 者    : Niyh  (QQ:393320854)
- 编写日期 : 2019
- 说 明    :
- 历史纪录 :
- <作者>    <日期>        <版本>        <内容>
-           2019/9/15
-*******************************************************************/
-#include "qtaddressbar.h"
+﻿#include "qtaddressbar.h"
 
 #include <QFont>
 #include <QMouseEvent>
@@ -28,13 +18,8 @@ AddressLineEdit::AddressLineEdit(QWidget *parent) : QtWidgetBase(parent)
     m_font.setFamily(FONT_FAMILY);
     m_font.setPixelSize(18);
     m_nMargin = 10;
+    m_nSplitWidth = 4;
 
-    QFontMetrics fm(m_font);
-#if (QT_VERSION > QT_VERSION_CHECK(5, 11, 0))
-    fm.horizontalAdvance("/");
-#else
-    m_nSplitWidth = fm.width("/") ;
-#endif
     m_nIndex = -1;
 }
 
@@ -61,10 +46,9 @@ void AddressLineEdit::setAddress(const QString &addr)
 #else
         int nWidth = fm.width(strAddr, strAddr.length());
 #endif
-        rect = QRect(rect.right()+ 2, rect.top(), nWidth + m_nSplitWidth, rect.height());
+        rect = QRect(rect.right()+ 2, rect.top(), nWidth + m_nSplitWidth + 1, rect.height());
         m_addressItems.insert(i, new AddressItem(i, strAddr, rect));
-        qDebug() << "str addr is " << strAddr;
-    }
+      }
 
     m_nIndex = m_addressItems.size() - 1;
     this->update();
@@ -78,7 +62,7 @@ QString AddressLineEdit::getAddress()
         strPath += m_addressItems.value(i)->address();
         strPath.append("/");
     }
-
+qDebug() << "get address is " << strPath;
     return strPath;
 }
 
@@ -132,15 +116,16 @@ void AddressLineEdit::paintEvent(QPaintEvent *)
 
     QFont font(FONT_FAMILY);
     font.setPixelSize(18);
-    painter.setFont(font);
+    painter.setFont(m_font);
 
     painter.setBrush(Qt::NoBrush);
+
     foreach (AddressItem *item, m_addressItems) {
         painter.setPen(m_nIndex == item->id() ? QColor("#00ff00") : QColor("#3c3c3c"));
-        painter.drawText(item->rect(), Qt::AlignCenter, item->address());
 
+        painter.drawText(item->rect(), Qt::AlignCenter, item->address());
         if (item->id() < (m_addressItems.size() - 1)) {
-            painter.drawText(QRect(item->rect().right(), item->rect().top(), m_nSplitWidth, m_nBaseHeight),
+            painter.drawText(QRect(item->rect().right(), item->rect().top(), m_nSplitWidth+2, m_nBaseHeight),
                              Qt::AlignCenter, "/");
         }
     }
