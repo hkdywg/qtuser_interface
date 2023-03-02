@@ -62,6 +62,8 @@ void MainWindow::InitDesktop()
 
 void MainWindow::SltCurrentAppChanged(int index)
 {
+    qDebug() << "app item is be toched, index is " << index << endl;
+
     if (m_bStartApp) return;
     m_launcherWidget->setEnabled(false);
     m_bStartApp = true;
@@ -77,7 +79,6 @@ void MainWindow::SltCurrentAppChanged(int index)
             return;
         }
     }
-    qDebug() << "app is be toched" << endl;
     switch (index) {
     case 0: {
         m_widgetWorkSpace = new FileSystemWindow(this);
@@ -86,6 +87,8 @@ void MainWindow::SltCurrentAppChanged(int index)
         break;
 
     default:
+        m_bStartApp = false;
+        m_launcherWidget->setEnabled(true);
         m_nCurrentIndex = -1;
         break;
     }
