@@ -14,7 +14,8 @@ SOURCES += \
         $$PWD/src/qtpixmapbutton.cpp \
         $$PWD/src/qtaddressbar.cpp \
         $$PWD/src/qtlistwidget.cpp \
-        $$PWD/src/qtpressmovelistview.cpp
+        $$PWD/src/qtpressmovelistview.cpp \
+        $$PWD/src/qtpagelistwidget.cpp
 
 
 HEADERS += \
@@ -23,7 +24,8 @@ HEADERS += \
         $$PWD/include/qtpixmapbutton.h \
         $$PWD/include/qtaddressbar.h \
         $$PWD/include/qtlistwidget.h \
-        $$PWD/include/qtpressmovelistview.h
+        $$PWD/include/qtpressmovelistview.h \
+        $$PWD/include/qtpagelistwidget.h
 
 INCLUDEPATH     += $$PWD/include
 DEFINES         += QtUi

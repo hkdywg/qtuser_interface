@@ -31,7 +31,9 @@ MOC_DIR         = $$PWD/../build/app
 OBJECTS_DIR     = $$PWD/../build/app
 
 
+include($$PWD/Common/Common.pri)
 include($$PWD/FileSystem/FileSystem.pri)
+include($$PWD/Weather/Weather.pri)
 
 
 # Default rules for deployment.

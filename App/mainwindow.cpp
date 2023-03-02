@@ -85,6 +85,10 @@ void MainWindow::SltCurrentAppChanged(int index)
         qDebug() << "file system item is created!" << endl;
     }
         break;
+    case 5: {
+        m_widgetWorkSpace = new WeatherWidget(this);
+    }
+        break;
 
     default:
         m_bStartApp = false;

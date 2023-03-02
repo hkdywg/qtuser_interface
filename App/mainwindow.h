@@ -6,6 +6,7 @@
 #include "launcherwidget.h"
 #include "qtwidgetbase.h"
 #include "filesystemwindow.h"
+#include "weatherwidget.h"
 
 
 class MainWindow : public QWidget
